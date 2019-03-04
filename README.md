@@ -5,6 +5,8 @@ App built using
 * Clean Architecture
 * AirBnB Linting
 
+Currently am building the use cases, in the future:
+
 ### Prerequisites
 
 #### Dependencies
