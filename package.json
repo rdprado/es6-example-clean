@@ -1,7 +1,7 @@
 {
-  "name": "es6-app",
+  "name": "es6-example-clean",
   "version": "1.0.0",
-  "description": "App built using advanced JavaScript's syntax and a guide to import npm modules in our front end application.",
+  "description": "App built using JavaScript's ES6, airbnb linting and clean architecture.",
   "main": "index.js",
   "scripts": {
     "build": "browserify index.js -o dist/bundle.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/BalasubramaniM/es6-app.git"
+    "url": "git+ssh://git@github.com/rdprado/es6-example-clean.git"
   },
   "keywords": [
     "es6",
@@ -29,15 +29,14 @@
       ]
     ]
   },
-  "author": "Balasubramani M",
+  "author": "Renato D. Prado",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/BalasubramaniM/es6-app/issues"
+    "url": "https://github.com/rdprado/es6-example-clean/issues"
   },
-  "homepage": "https://github.com/BalasubramaniM/es6-app#readme",
+  "homepage": "https://github.com/BalasubramaniM/es6-example-clean#readme",
   "dependencies": {
     "browserify": "^16.2.2",
-    "reading-time": "^1.1.3",
     "watchify": "^3.11.0"
   },
   "devDependencies": {

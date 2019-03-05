@@ -1,5 +1,6 @@
 import InvestmentFactory from '../../investmentFactory';
 import { EntityValidationError, LFTValidationError } from '../../entities/entityValidationError';
+import Investment from '../../entities/investment';
 
 class CalculateInvestmentInteractor {
     constructor(interactorOutput, investmentsDataGateway, ratesDataGateway) {
@@ -12,6 +13,19 @@ class CalculateInvestmentInteractor {
         this.errorCodes.INVALID_EMPTY_NAME = 'INVALID_EMPTY_NAME';
         this.errorCodes.INVALID_LFT_PARAMS = 'INVALID_LFT_PARAMS';
         this.errorCodes.NEGATIVE_PARAMS = 'NEGATIVE_PARAMS';
+    }
+
+    static getDefaultInvestmentParams() {
+        return {
+            name: this.interactorOutput.getDefaultInvestmentName(),
+            productNames: Investment.getProductNames(),
+            productName: Investment.getProductNames().CDB,
+            amount: 1000,
+            baseRate: 0.6,
+            investmentRate: 1,
+            getBaseRateNames: Investment.getBaseRateNames(),
+            baseRateName: Investment.getBaseRateNames().CDI,
+        };
     }
 
     calculateInvestment(reqModel) {
