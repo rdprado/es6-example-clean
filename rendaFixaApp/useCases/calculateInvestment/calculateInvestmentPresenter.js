@@ -1,18 +1,25 @@
 class CalculateInvestmentPresenter {
     constructor(viewModel) {
         this.viewModel = viewModel;
+        this.Defaults.InvestmentName = 'Meu Investimento';
         this.errorMessages.UNKOWN = 'Erro';
+        this.errorMessages.INVALID_EMPTY_NAME = 'O nome do investimento não pode ser vazio';
         this.errorMessages.INVALID_PARAMS = 'Parâmetros inválidos para o investimento';
         this.errorMessages.INVALID_LFT_PARAMS = 'A taxa do LFT deve ser 100% da Selic';
         this.errorMessages.NEGATIVE_PARAMS = 'Não pode haver parâmetros negativos';
     }
 
-    static getDefaultInvestmentName() {
-        return 'Meu Investimento';
+    presentFillInitialData(resModel) {
+        const viewModelData = {};
+        viewModelData.name = this.Defaults.InvestmentName;
+        viewModelData.finalGrossIncome = Number
+            .toPrecision(resModel.finalGrossIncome, 2).toString();
+        viewModelData.finalNetIncome = Number.toPrecision(resModel.finalNetIncome, 2).toString();
+        this.viewModel.setInitialData(viewModelData);
     }
 
-    presentCalculatedInvestment(resModel) {
-        const viewModelData = this.viewModel.getData();
+    presentCalculateInvestment(resModel) {
+        const viewModelData = {};
         viewModelData.finalGrossIncome = Number
             .toPrecision(resModel.finalGrossIncome, 2).toString();
         viewModelData.finalNetIncome = Number.toPrecision(resModel.finalNetIncome, 2).toString();
@@ -26,7 +33,7 @@ class CalculateInvestmentPresenter {
             }
         }
 
-        this.viewModel.setData(viewModelData);
+        this.viewModel.setCalculateInvestmentData(viewModelData);
     }
 }
 

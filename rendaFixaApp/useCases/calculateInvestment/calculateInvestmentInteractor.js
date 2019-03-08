@@ -1,10 +1,10 @@
 import InvestmentFactory from '../../investmentFactory';
 import { EntityValidationError, LFTValidationError } from '../../entities/entityValidationError';
+import Investment from '../../entities/investment';
 
 class CalculateInvestmentInteractor {
-    constructor(interactorOutput, investmentsDataGateway, ratesDataGateway) {
+    constructor(interactorOutput, ratesDataGateway) {
         this.interactorOutput = interactorOutput;
-        this.investmentsDataGateway = investmentsDataGateway;
         this.ratesDataGateway = ratesDataGateway;
 
         this.errorCodes.NO_ERRORS = 'NO_ERRORS';
@@ -12,6 +12,32 @@ class CalculateInvestmentInteractor {
         this.errorCodes.INVALID_EMPTY_NAME = 'INVALID_EMPTY_NAME';
         this.errorCodes.INVALID_LFT_PARAMS = 'INVALID_LFT_PARAMS';
         this.errorCodes.NEGATIVE_PARAMS = 'NEGATIVE_PARAMS';
+    }
+
+    fillInitialData() {
+        const investmentData = {
+            name: 'My Investment', // will be changed by presenter
+            amount: 1000,
+            baseRate: 0.6,
+            investmentRate: 1,
+            baseRateName: Investment.getBaseRateNames().CDI,
+        };
+
+        const investment = InvestmentFactory.createInvestment(investmentData);
+        const resModel = {
+            name: investment.getData().name,
+            productNames: Investment.getProductNames(),
+            productName: investment.getData().productName,
+            amount: investment.getData().amount,
+            baseRate: investment.getData().baseRate,
+            investmentRate: investment.getData().investmentRate,
+            getBaseRateNames: Investment.getBaseRateNames(),
+            baseRateName: investment.getData().baseRateName,
+            finalNetIncome: investment.finalNetIncome(),
+            finalGrossIncome: investment.finalGrossIncome(),
+        };
+
+        this.interactorOutput.presentFillInitialData(resModel);
     }
 
     calculateInvestment(reqModel) {
